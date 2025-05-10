@@ -1,6 +1,15 @@
 "use client";
 
 import RotatingText from "@/components/text-animations/RotatingText/RotatingText";
+import {
+	Card,
+	CardAction,
+	CardContent,
+	CardDescription,
+	CardFooter,
+	CardHeader,
+	CardTitle,
+} from "@/components/ui/card";
 import { Separator } from "@/components/ui/separator";
 import { motion } from "framer-motion";
 import Image from "next/image";
@@ -52,7 +61,7 @@ export default function Home() {
 					>
 						<p className="text-3xl mb-2 font-thin">Hello,</p>
 						<div className="text-primary">
-							<h1 className="text-7xl w-max font-sans">
+							<h1 className="text-7xl w-max">
 								I&apos;m Paolo Santos
 							</h1>
 							<div className="text-2xl font-mono my-0 font-medium overflow-clip">
@@ -77,21 +86,40 @@ export default function Home() {
 							</div>
 						</div>
 						<p className="text-lg font-thin">
-							a front-end developer based in the
-							Philippines with a passion for creating visually
-							stunning and highly functional web applications.
-							I&apos;m also a talented musician, an avid gamer and
-							a charismatic streamer. With over 2 years of
-							experience in web development, I&apos;m confident in
-							my ability to deliver high-quality results and
-							continuously learn new things.
+							a front-end developer based in the Philippines with
+							a passion for creating visually stunning and highly
+							functional web applications. I&apos;m also a
+							talented musician, an avid gamer and a casual
+							streamer. With over 2 years of experience in web
+							development, I&apos;m confident in my ability to
+							deliver high-quality results and continuously learn
+							new things.
 						</p>
 					</motion.div>
 				</div>
 			</div>
 
-			<div className="">
+			<div className="mt-24">
 				<h2>Projects</h2>
+				<Separator className="my-4" />
+				<div className="grid grid-cols-3 gap-4">
+					{[1, 2, 3, 4].map((_, i) => (
+						<Card key={i}>
+							<CardHeader>
+								<CardTitle>Card Title {i + 1}</CardTitle>
+								<CardDescription>
+									Card Description {i + 1}
+								</CardDescription>
+							</CardHeader>
+							<CardContent>
+								<p>Card Content {i + 1}</p>
+							</CardContent>
+							<CardFooter>
+								<CardAction>Card Action {i + 1}</CardAction>
+							</CardFooter>
+						</Card>
+					))}
+				</div>
 			</div>
 		</main>
 	);

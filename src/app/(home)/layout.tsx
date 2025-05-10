@@ -16,8 +16,7 @@ export default function HomeLayout({
 				moveParticlesOnHover={false}
 				disableRotation={true}
 			/>
-			{children}
+			<div className="mx-12 md:mx-40 lg:mx-56">{children}</div>
 		</div>
 	);
 }
-
