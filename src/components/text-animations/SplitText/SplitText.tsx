@@ -81,7 +81,7 @@ const SplitText: React.FC<SplitTextProps> = ({
 	return (
 		<p
 			ref={ref}
-			className={`split-parent overflow-hidden inline ${className}`}
+			className={`split-parent inline overflow-hidden ${className}`}
 			style={{ textAlign, whiteSpace: "normal", wordWrap: "break-word" }}
 		>
 			{words.map((word, wordIndex) => (
@@ -97,7 +97,7 @@ const SplitText: React.FC<SplitTextProps> = ({
 							letterIndex;
 
 						return (
-                            // @ts-expect-error children prop works, probably a false positive?
+							// @ts-expect-error children prop works, probably a false positive?
 							<animated.span
 								key={index}
 								style={

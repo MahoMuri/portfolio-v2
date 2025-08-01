@@ -12,15 +12,29 @@ import {
 	CardTitle,
 } from "@/components/ui/card";
 import { Separator } from "@/components/ui/separator";
+import { useObserver } from "@/hooks/use-observer";
 import { motion } from "framer-motion";
 import { FileText, Mail } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
+import { useRef } from "react";
 
 export default function Home() {
+	const [ref] = useObserver();
+	const contactRef = useRef<HTMLDivElement>(null);
+
+	function scrollToContact() {
+		if (contactRef.current) {
+			contactRef.current.scrollIntoView({ behavior: "smooth" });
+		}
+	}
+
 	return (
 		<main>
-			<div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 flex">
+			<div
+				ref={ref}
+				className="absolute top-1/2 left-1/2 flex -translate-x-1/2 -translate-y-1/2"
+			>
 				<div className="overflow-clip pr-8">
 					<motion.div
 						initial={{ x: 400, opacity: 0 }}
@@ -28,7 +42,7 @@ export default function Home() {
 						transition={{ duration: 1, delay: 1.2 }}
 					>
 						<motion.div
-							className="overflow-clip size-96"
+							className="size-96 overflow-clip"
 							initial={{ borderRadius: 0 }}
 							animate={{ borderRadius: "1rem" }}
 							transition={{ duration: 1, delay: 2.2 }}
@@ -63,12 +77,12 @@ export default function Home() {
 						animate={{ x: 0, opacity: 1 }}
 						transition={{ duration: 1, delay: 1.2 }}
 					>
-						<p className="text-3xl mb-2 font-thin">Hello,</p>
+						<p className="mb-2 text-3xl font-thin">Hello,</p>
 						<div className="text-primary">
-							<h1 className="text-7xl w-max">
+							<h1 className="w-max text-7xl">
 								I&apos;m Paolo Santos
 							</h1>
-							<div className="text-2xl font-mono my-0 font-medium overflow-clip">
+							<div className="my-0 overflow-clip font-mono text-2xl font-medium">
 								<RotatingText
 									texts={[
 										"💻 Web Developer",
@@ -99,10 +113,12 @@ export default function Home() {
 							deliver high-quality results and continuously learn
 							new things.
 						</p>
-						<div className="flex mt-4 gap-4">
-							<Button>
-								<Mail /> Contact Me
-							</Button>
+						<div className="mt-4 flex gap-4">
+							<Link href={"/#contact"} scroll={false}>
+								<Button onClick={() => scrollToContact()}>
+									<Mail /> Contact Me
+								</Button>
+							</Link>
 							<Link href={"/Resume-Paolo.pdf"} download>
 								<Button variant={"secondary"}>
 									<FileText />
@@ -114,8 +130,30 @@ export default function Home() {
 				</div>
 			</div>
 
+			<div id="career" className="mt-24">
+				<h2>Career</h2>
+			</div>
+
+			<div id="skills" className="mt-24">
+				<Card>
+					<h2 className="mx-auto">My Skills</h2>
+					<Separator />
+					<CardContent>
+						<div>
+							<div className="flex items-center gap-4">
+								<p>TypeScript</p>
+								<p>React</p>
+								<p>Next.js</p>
+								<p>Node.js</p>
+								<p>JavaScript</p>
+							</div>
+						</div>
+					</CardContent>
+				</Card>
+			</div>
+
 			<div className="mt-24">
-				<h2>Projects</h2>
+				<h1 className="text-center">Past Projects</h1>
 				<Separator className="mt-6 mb-10" />
 				<div className="grid grid-cols-3 gap-4">
 					{[1, 2, 3, 4].map((_, i) => (
@@ -135,6 +173,10 @@ export default function Home() {
 						</Card>
 					))}
 				</div>
+			</div>
+
+			<div ref={contactRef} id="contact" className="mt-24">
+				<h2>Contact Me</h2>
 			</div>
 		</main>
 	);

@@ -1,3 +1,4 @@
+import { Navbar } from "@/components/navbar";
 import { ThemeProvider } from "@/components/theme-provider";
 import type { Metadata } from "next";
 import { IBM_Plex_Mono, Poppins } from "next/font/google";
@@ -33,6 +34,7 @@ export default function RootLayout({
 					defaultTheme="dark"
 					disableTransitionOnChange
 				>
+					<Navbar />
 					{children}
 				</ThemeProvider>
 			</body>
