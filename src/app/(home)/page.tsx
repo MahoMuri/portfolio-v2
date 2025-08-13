@@ -18,6 +18,13 @@ import { FileText, Mail } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
 import { useRef } from "react";
+import {
+	BiLogoJavascript,
+	BiLogoNodejs,
+	BiLogoReact,
+	BiLogoTailwindCss,
+	BiLogoTypescript,
+} from "react-icons/bi";
 
 export default function Home() {
 	const [ref] = useObserver();
@@ -136,17 +143,31 @@ export default function Home() {
 
 			<div id="skills" className="mt-24">
 				<Card>
-					<h2 className="mx-auto">My Skills</h2>
-					<Separator />
-					<CardContent>
-						<div>
-							<div className="flex items-center gap-4">
-								<p>TypeScript</p>
-								<p>React</p>
-								<p>Next.js</p>
-								<p>Node.js</p>
-								<p>JavaScript</p>
-							</div>
+					<CardContent className="grid grid-cols-6">
+						<h2 className="col-span-2 place-self-center-safe">
+							I currently excel in these skills:
+						</h2>
+						<div className="col-start-4 col-span-3 flex flex-wrap justify-evenly">
+							<BiLogoTypescript
+								className="text-ts hover:cursor-pointer"
+								size={128}
+							/>
+							<BiLogoReact
+								className="text-react hover:cursor-pointer"
+								size={128}
+							/>
+							<BiLogoTailwindCss
+								className="text-tailwind hover:cursor-pointer"
+								size={128}
+							/>
+							<BiLogoNodejs
+								className="text-nodejs hover:cursor-pointer"
+								size={128}
+							/>
+							<BiLogoJavascript
+								className="text-js hover:cursor-pointer"
+								size={128}
+							/>
 						</div>
 					</CardContent>
 				</Card>
